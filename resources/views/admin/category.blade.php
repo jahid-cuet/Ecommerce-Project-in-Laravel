@@ -1,7 +1,26 @@
 <!DOCTYPE html>
 <html>
+<head>
+  @include('admin.css')
 
-@include('admin.css')
+<style type="text/css">
+
+input[type='text']
+{
+  width:400px;
+  height: 50px;
+}
+.div_deg
+{
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+
+</style>
+
+</head>
+
 
 <body>
 
@@ -11,12 +30,17 @@
 
 <div class="d-flex align-items-stretch">
       @include('admin.slider')
+<div class="div_deg">
+  <form action="{{url('add_category')}}"  method="POST">
+    @csrf
+    <div>
+      <input type="text" name="category">
+      <input class="btn btn-primary"type="submit" value="Add Category">
+    </div>
+  </form>
 
-
-
-         @include('admin.body')
-
-
+</div>
+      
 
     <!-- JavaScript files-->
     <script src="{{ asset('admincss/vendor/jquery/jquery.min.js') }}"></script>
