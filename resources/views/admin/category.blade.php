@@ -86,9 +86,10 @@ input[type='text']
           <a href="" class="btn btn-warning">Edit</a>
         </td>
 
-          <td> 
-            <a href="{{url('delete_category',$d->id)}}" class="btn btn-danger">Delete</a>
-          </td>
+        <td> 
+          <a href="{{ url('delete_category', $d->id) }}" class="btn btn-danger" onclick="confirmation(event)">Delete</a>
+        </td>
+        
 
           
           
@@ -107,7 +108,33 @@ input[type='text']
 
 
     <!-- JavaScript files-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script type='text/javascript'>
+    
+    function confirmation(event) {
+      event.preventDefault();
+      var urlToRedirect = event.currentTarget.getAttribute('href');
+      console.log(urlToRedirect);
+    
+      Swal.fire({
+        title: "Are you sure to delete this?",
+        text: "This delete will be permanent.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        dangerMode: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = urlToRedirect;
+        }
+      });
+    }
+    
+    </script>
+    
+    
+
+
     <script src="{{ asset('admincss/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('admincss/vendor/popper.js/umd/popper.min.js') }}"></script>
     <script src="{{ asset('admincss/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
@@ -117,6 +144,14 @@ input[type='text']
     <script src="{{ asset('admincss/js/charts-home.js') }}"></script>
     <script src="{{ asset('admincss/js/front.js') }}"></script>
 
+
+
+{{-- Bootsrap src link --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  
+    {{-- Sweer Alert --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
 
