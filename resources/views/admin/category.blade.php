@@ -82,13 +82,15 @@ input[type='text']
           <a href="" class="btn btn-primary">{{ $d->category_name }}</a>
          </td>
           
+         <td >
+          <a href="" class="btn btn-warning">Edit</a>
+        </td>
+
           <td> 
-            <a href="" class="btn btn-warning">Edit</a>
+            <a href="{{url('delete_category',$d->id)}}" class="btn btn-danger">Delete</a>
           </td>
 
-          <td >
-            <a href="" class="btn btn-danger">Delete</a>
-          </td>
+          
           
         </tr>
         @endforeach

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
+use function Pest\Laravel\delete;
+
 class AdminController extends Controller
 {
     public function category_view()
@@ -22,5 +24,15 @@ class AdminController extends Controller
         $category->save();
         return back()->withSuccess('Product Category Created Successfully!!!');
         return redirect()->back();
+    }
+
+    public function delete_category($id)
+    {
+        $category=Category::find($id);
+        $category->delete();
+        return back()->withSuccess('Product Category Deleted Successfully!!!');
+        return redirect()->back();
+
+
     }
 }
