@@ -55,6 +55,7 @@
             
           </tbody>
         </table>
+        {{$products->links()}}
       </div>
 
     <!-- JavaScript files-->
