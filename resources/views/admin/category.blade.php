@@ -49,10 +49,18 @@ input[type='text']
 <div class="div_deg">
   <form action="{{url('add_category')}}"  method="POST">
     @csrf
-    <div>
+    {{-- <div>
       <input type="text" name="category">
-      <input class="btn btn-primary"type="submit" value="Add Category">
-    </div>
+
+    </div> --}}
+    <div>
+      <label for="category_name" class="form-label">Category</label>
+      <input type="text" class="form-control @error('category_name') is-invalid @enderror" id="category_name" name="category_name" value="{{ old('category_name') }}" required>
+      @error('category_name')
+          <div class="invalid-feedback">{{ $message }}</div>
+      @enderror
+      <input class="btn btn-primary mt-2" type="submit" value="Add Category">
+  </div>
   </form>
   <div class="ml-5">
     <h1>Category</h1>

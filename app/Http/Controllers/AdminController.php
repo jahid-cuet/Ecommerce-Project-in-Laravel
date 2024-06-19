@@ -14,8 +14,11 @@ class AdminController extends Controller
     }
     public function add_category(Request $request)
     {
+        $request->validate([
+            'category_name' => 'required|regex:/^[\pL\s]+$/u|max:255', //regex:/^[\pL\s]+$/u ensures the field contains only letters (including unicode letters) and spaces.
+        ]);
         $category=new Category();
-        $category->category_name=$request->category;
+        $category->category_name=$request->category_name;
         $category->save();
         return back()->withSuccess('Product Category Created Successfully!!!');
         return redirect()->back();
