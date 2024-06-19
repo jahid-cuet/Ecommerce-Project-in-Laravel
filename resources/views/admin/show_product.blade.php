@@ -37,7 +37,7 @@
               <th scope="col">Description</th>
               <th scope="col">Price</th>
               <th scope="col">Image</th>
-              {{-- <th scope="col">Edit</th> --}}
+              <th scope="col">Edit</th>
               <th scope="col">Delete</th>
             </tr>
           </thead>
@@ -56,24 +56,17 @@
              </td>
              <td>
                <img height="100" width="100" src="/pro/{{$product->image}}" alt="image">
-             {{-- </td>
-             <a href="{{ url('edit_product', $d->id) }}" class="btn btn-success">Edit</a>
-            </td> --}}
+             </td>
+             <td>
+             <a href="{{ url('edit_product', $product->id) }}" class="btn btn-success">Edit</a>
+            </td> 
     
             <td> 
               <a href="{{ url('delete_product', $product->id) }}" class="btn btn-danger" onclick="confirmation(event)">Delete</a>
             </td>
               
-    
-            {{-- <td> 
-              <a href="{{ url('delete_category', $d->id) }}" class="btn btn-danger" onclick="confirmation(event)">Delete</a>
-            </td> --}}
-              
             </tr>
-            @endforeach
-           
-            
-            
+            @endforeach  
           </tbody>
         </table>
         {{$products->links()}}

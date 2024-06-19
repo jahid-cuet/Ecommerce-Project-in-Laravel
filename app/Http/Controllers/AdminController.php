@@ -91,7 +91,7 @@ class AdminController extends Controller
         }
     
         $product->save();
-        return back()->withSuccess('Product Created Successfully!!!');
+        return redirect('/show_product')->withSuccess('Product Created Successfully!!!');
     
         // Redirect or return a response
     }
@@ -119,6 +119,46 @@ class AdminController extends Controller
 
         $product->delete();
         return back()->withSuccess('Product  Deleted Successfully!!!');
-
+        // return redirect('show_product')->withSuccess('Product  Deleted Successfully!!!');
     }
+
+
+    public function edit_product($id)
+    {
+        $categories=Category::all();
+        $data=Product::find($id);
+        
+        return view('admin.edit_product',compact('data','categories'));
+    }
+
+    public function update_product(Request $request,$id)
+    {
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+            'price' => 'required|string',
+            'quantity' => 'required|numeric|between:0.01,999999.99',
+            'category_id' => 'required|exists:categories,id',
+            'image' => 'nullable|image|max:2048', // Allowing image files with a maximum size of 2MB
+        ]);
+    
+        $product = Product::find($id);
+        $product->title = $validatedData['title'];
+        $product->category_id = $validatedData['category_id'];
+        $product->description = $validatedData['description'];
+        $product->price = $validatedData['price'];
+        $product->quantity = $validatedData['quantity'];
+    
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('pro'), $imageName);
+            $product->image = $imageName;
+        }
+    
+        $product->save();
+        return redirect('/show_product')->withSuccess('Product Updated Successfully!!!');
+    
+        // Redirect or return a response
+    }
+
 }
