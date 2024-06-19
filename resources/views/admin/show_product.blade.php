@@ -25,6 +25,12 @@
 <div class="d-flex align-items-stretch">
       @include('admin.slider')
 
+      <form method="get" action="{{url('product_search')}}">
+        @csrf
+        <input type="search" name="search">
+        <input type="submit" class="btn btn-secondary" value="Search">
+
+      </form>
 
       <div class="ml-5">
         <h1>All Product</h1>

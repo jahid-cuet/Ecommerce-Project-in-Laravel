@@ -87,9 +87,14 @@ input[type='text']
   </div>
 
 
+    {{-- <div>
+        <label for="image" class="form-label">Product Image</label>
+        <img height="100" width="100" src="/pro/{{$data->image}}" alt="image">
+  </div> --}}
+
     <div>
-      <label for="image" class="form-label">Product Image</label>
-      <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image" value="{{$data->image}}"  required>
+      <label for="image" class="form-label">Upload New Image</label>
+      <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image" required>
       @error('image')
           <div class="invalid-feedback">{{ $message }}</div>
       @enderror
