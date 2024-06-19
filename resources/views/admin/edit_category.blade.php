@@ -46,91 +46,27 @@ input[type='text']
 <div class=" d-flex align-items-stretch">
       @include('admin.slider')
 
+      <h1 class="ms-5">Update Category</h1>
 <div class="div_deg">
-  <form action="{{url('add_category')}}"  method="POST">
+    
+  <form action="{{url('update_category',$data->id)}}"  method="POST">
     @csrf
-    {{-- <div>
-      <input type="text" name="category">
-
-    </div> --}}
     <div>
       <label for="category_name" class="form-label">Category</label>
-      <input type="text" class="form-control @error('category_name') is-invalid @enderror" id="category_name" name="category_name" value="{{ old('category_name') }}" required>
+      <input type="text" class="form-control @error('category_name') is-invalid @enderror" id="category_name" name="category_name" value="{{$data->category_name }}" required>
       @error('category_name')
           <div class="invalid-feedback">{{ $message }}</div>
       @enderror
       <input class="btn btn-primary mt-2" type="submit" value="Add Category">
   </div>
   </form>
-  <div class="ml-5">
-    <h1>Category</h1>
-  
-    <table class="table">
-      <thead>
-        <tr>
-        
-          <th scope="col">Category Name</th>
-          <th scope="col">Edit</th>
-          <th scope="col">Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        @foreach ($data as $d)
-        <tr class="ml-2 p-2">
-          
-         <td>
-          <a href="" class="btn btn-primary">{{ $d->category_name }}</a>
-         </td>
-          
-         <td >
-          <a href="{{ url('edit_category', $d->id) }}" class="btn btn-success">Edit</a>
-        </td>
-
-        <td> 
-          <a href="{{ url('delete_category', $d->id) }}" class="btn btn-danger" onclick="confirmation(event)">Delete</a>
-        </td>
-        
-
-          
-          
-        </tr>
-        @endforeach
-       
-        
-        
-      </tbody>
-    </table>
-  </div>
   
 </div>
 </div>
       
 
 
-    <!-- JavaScript files-->
-    <script type='text/javascript'>
-    
-    function confirmation(event) {
-      event.preventDefault();
-      var urlToRedirect = event.currentTarget.getAttribute('href');
-      console.log(urlToRedirect);
-    
-      Swal.fire({
-        title: "Are you sure to delete this?",
-        text: "This delete will be permanent.",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "Yes, delete it!",
-        cancelButtonText: "No, cancel!",
-        dangerMode: true
-      }).then((result) => {
-        if (result.isConfirmed) {
-          window.location.href = urlToRedirect;
-        }
-      });
-    }
-    
-    </script>
+
     
     
 
