@@ -95,4 +95,13 @@ class AdminController extends Controller
     
         // Redirect or return a response
     }
+
+
+
+
+    public function show_product()
+    {
+        $products=Product::all();
+        return view('admin.show_product',compact('products'));
+    }
 }
