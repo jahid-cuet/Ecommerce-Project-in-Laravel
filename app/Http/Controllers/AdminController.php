@@ -104,4 +104,21 @@ class AdminController extends Controller
         $products=Product::paginate(2);
         return view('admin.show_product',compact('products'));
     }
+
+
+    public function delete_product($id)
+    {
+        $product=Product::find($id);
+
+        $image_path=public_path('pro/'.$product->image);
+
+        if(file_exists($image_path))
+        {
+            unlink($image_path);
+        }
+
+        $product->delete();
+        return back()->withSuccess('Product  Deleted Successfully!!!');
+
+    }
 }
