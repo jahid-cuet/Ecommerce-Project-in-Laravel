@@ -34,7 +34,7 @@
                {{$product->title}}
              </td>
              <td>
-               {{$product->description}}
+               {!!Str::limit($product->description,50)!!}
              </td>
              <td>
                {{$product->price}}
