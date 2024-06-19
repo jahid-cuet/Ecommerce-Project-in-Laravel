@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 use function Pest\Laravel\delete;
@@ -50,5 +51,48 @@ class AdminController extends Controller
 
         return redirect('/category_view')->withSuccess('Product Category Updated Successfully!!!');
     }
+
+    // Category End
+
+
+
+    // Product Start
+    public function add_product()
+
+    {
+        $categories=Category::all();
+        return view('admin.add_product',compact('categories'));
+    }
+
+
+    public function store_product(Request $request)
+
+    {
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+            'price' => 'required|string',
+            'quantity' => 'required|numeric|between:0.01,999999.99',
+            'category_id' => 'required|exists:categories,id',
+            'image' => 'nullable|image|max:2048', // Allowing image files with a maximum size of 2MB
+        ]);
     
+        $product = new Product();
+        $product->title = $validatedData['title'];
+        $product->category_id = $validatedData['category_id'];
+        $product->description = $validatedData['description'];
+        $product->price = $validatedData['price'];
+        $product->quantity = $validatedData['quantity'];
+    
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('pro'), $imageName);
+            $product->image = $imageName;
+        }
+    
+        $product->save();
+        return back()->withSuccess('Product Created Successfully!!!');
+    
+        // Redirect or return a response
+    }
 }
