@@ -32,6 +32,16 @@
         <a class="nav-link" href="contact.html">Contact Us</a>
       </li>
     </ul>
+
+    @if(Route::has('login'))
+
+    @auth
+
+    <form method="POST" action="{{ route('logout') }}">
+      @csrf
+    <input class='btn btn-success' type="submit" value="Logout">
+
+    @else
     <div class="user_option">
       <a href="{{url('/login')}}">
         <i class="fa fa-user" aria-hidden="true"></i>
@@ -45,14 +55,10 @@
           Register
         </span>
       </a>
-      <a href="">
-        <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-      </a>
-      <form class="form-inline ">
-        <button class="btn nav_search-btn" type="submit">
-          <i class="fa fa-search" aria-hidden="true"></i>
-        </button>
-      </form>
+      @endauth
+
+      @endif
+
     </div>
   </div>
 </nav>
