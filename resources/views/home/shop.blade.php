@@ -1,3 +1,9 @@
+@if($message=Session::get('success'))
+        <div class="alert alert-success alert-block">
+          <strong>{{$message}}</strong>
+        </div>
+        @endif
+
 <section class="shop_section layout_padding">
     <div class="container">
       <div class="heading_container heading_center">
@@ -9,7 +15,7 @@
         @foreach ($products as $product)
         <div class="col-sm-6 col-md-4 col-lg-3">
           <div class="box">
-            <a href="">
+            
               <div class="img-box">
                 <img src="pro/{{$product->image}}" alt="">
               </div>
@@ -22,12 +28,19 @@
                   </span>
                 </h6>
               </div>
-              <div>
-                <a href="{{url('product_details',$product->id)}}" class='mt-2 btn btn-warning'> Details</a>
+              <div class='d-flex m-2 pl-2'>
+                <a href="{{url('product_details',$product->id)}}" class='mt-2 btn btn-warning'>Details</a>
+                <div class='mx-2'>
+                  <a href="{{url('add_cart',$product->id)}}" class='mt-2 btn btn-success'>Add to Cart</a>
+                </div>
               </div>
-        </a>
+              
       </div>
     </div>
+
         @endforeach
+  </div>
+  </div>
+          
        
   </section>
