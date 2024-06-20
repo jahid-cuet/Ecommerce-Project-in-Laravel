@@ -22,6 +22,9 @@
                   </span>
                 </h6>
               </div>
+              <div>
+                <a href="{{url('product_details',$product->id)}}" class='mt-2 btn btn-warning'> Details</a>
+              </div>
         </a>
       </div>
     </div>

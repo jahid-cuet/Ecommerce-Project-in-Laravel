@@ -24,4 +24,13 @@ class HomeController extends Controller
 
         return view('home.index',compact('products'));
     }
+
+    public function product_details($id)
+    {   
+        
+        $data =Product::find($id);
+        $category=$data->category; 
+
+        return view('home.product_details',compact('data','category'));
+    }
 }
