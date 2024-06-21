@@ -11,7 +11,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav  ">
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/dashboard">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="shop.html">
@@ -31,18 +31,25 @@
       <li class="nav-item">
         <a class="nav-link" href="contact.html">Contact Us</a>
       </li>
-    </ul>
+
+
+   
 
     @if(Route::has('login'))
 
     @auth
+
+    <a class="mx-5" href="{{url('mycart')}}">
+      <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+    </a>
+  </ul>
 
     <form method="POST" action="{{ route('logout') }}">
       @csrf
     <input class='btn btn-success' type="submit" value="Logout">
 
     @else
-    <div class="user_option">
+    <div  class="user_option ">
       <a href="{{url('/login')}}">
         <i class="fa fa-user" aria-hidden="true"></i>
         <span>

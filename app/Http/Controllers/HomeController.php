@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -47,4 +48,16 @@ class HomeController extends Controller
         $data->save();
         return back()->withSuccess('Cart Added Successfully!!!');
     }
+
+    public function mycart()
+    {
+        $user=Auth::user();
+
+        $userid=$user->id;
+
+        $cart=Cart::where('user_id',$userid)->get();
+
+        return view('home.mycart',compact('cart'));
+    }
+   
 }
