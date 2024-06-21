@@ -11,6 +11,7 @@ route::get('/product_details/{id}',[HomeController::class,'product_details']);
 route::get('/dashboard',[HomeController::class,'login_home'])->middleware(['auth', 'verified'])->name('dashboard');
 route::get('/add_cart/{id}',[HomeController::class,'add_cart'])->middleware(['auth', 'verified']);
 route::get('mycart',[HomeController::class,'mycart'])->middleware(['auth', 'verified']);
+route::get('delete_cart/{id}',[HomeController::class,'delete_cart'])->middleware(['auth', 'verified']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

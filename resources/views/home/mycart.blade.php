@@ -22,6 +22,7 @@
             <th scope="col">Product Title</th>
             <th scope="col">Product Price</th>
             <th scope="col">Product Image</th>
+            <th scope="col">Remove</th>
           </tr>
         </thead>
         <tbody>
@@ -31,7 +32,8 @@
                 <td>{{$cart->product->price}}</td>
                 <td><img width="100px" height="100px" src="\pro\{{$cart->product->image}}" alt=""></td>
      
-         
+                <td ><a class="btn btn-danger" href="{{url('delete_cart',$cart->id)}}">Remove</a></td>
+        
               </tr>
             @endforeach
          

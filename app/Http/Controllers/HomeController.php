@@ -59,5 +59,13 @@ class HomeController extends Controller
 
         return view('home.mycart',compact('cart'));
     }
+    public function delete_cart($id)
+    {
+
+        $cart=Cart::find($id);
+        $cart->delete();
+
+        return redirect()->back();
+    }
    
 }
