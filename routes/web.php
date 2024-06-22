@@ -38,6 +38,7 @@ route::get('show_product',[AdminController::class,'show_product'])->middleware([
 route::get('delete_product/{id}',[AdminController::class,'delete_product'])->middleware(['auth','admin']);
 route::get('edit_product/{id}',[AdminController::class,'edit_product'])->middleware(['auth','admin']);
 route::post('update_product/{id}',[AdminController::class,'update_product'])->middleware(['auth','admin']);
+route::get('view_orders',[AdminController::class,'view_orders'])->middleware(['auth','admin']);
 
 // For Search
 route::get('product_search',[AdminController::class,'product_search'])->middleware(['auth','admin']);

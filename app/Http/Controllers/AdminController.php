@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -167,6 +168,14 @@ class AdminController extends Controller
         $products=Product::where('title','LIKE','%'.$search.'%')->paginate(2);
         // orWhere()
         return view('admin.show_product',compact('products'));
+    }
+
+
+    public function view_orders()
+    {
+
+        $data=Order::all();
+        return view('admin.orders',compact('data'));
     }
 
 }
