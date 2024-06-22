@@ -24,6 +24,7 @@
                 <th scope="col">Status</th>
                 <th scope="col">Product Image</th>
                 <th scope="col">Change Status</th>
+                <th scope="col">Print Pdf</th>
                
               </tr>
             </thead>
@@ -43,7 +44,10 @@
                     
                     </td>
                    
+                    <td>
+                        <a class="btn btn-secondary "href="{{url('print_pdf',$data->id)}}">Print Pdf</a>
                     
+                    </td>
                     
                    
                   </tr>
