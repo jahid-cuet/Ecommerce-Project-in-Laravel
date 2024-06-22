@@ -23,6 +23,7 @@
                 <th scope="col">Product Price</th>
                 <th scope="col">Status</th>
                 <th scope="col">Product Image</th>
+                <th scope="col">Change Status</th>
                
               </tr>
             </thead>
@@ -36,7 +37,12 @@
                     <td>{{$data->product->price}}</td>
                     <td>{{$data->status}}</td>
                     <td><img width="100px" height="100px" src="/pro/{{$data->product->image}}" alt="image"></td>
+                    <td>
+                        <a class="btn btn-danger "href="{{url('on_the_way',$data->id)}}">On the Way</a>
+                        <a class="btn btn-success "href="{{url('delivered',$data->id)}}">Deliver</a>
                     
+                    </td>
+                   
                     
                     
                    
