@@ -47,6 +47,7 @@
     <form method="POST" action="{{ route('logout') }}">
       @csrf
     <input class='btn btn-success' type="submit" value="Logout">
+  </form>
 
     @else
     <div  class="user_option ">

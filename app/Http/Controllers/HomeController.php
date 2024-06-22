@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -51,14 +52,20 @@ class HomeController extends Controller
 
     public function mycart()
     {
-        $user=Auth::user();
+        if(Auth::id())
+        {
+            $user=Auth::user();
 
-        $userid=$user->id;
-
-        $cart=Cart::where('user_id',$userid)->get();
-
+            $userid=$user->id;
+    
+            $cart=Cart::where('user_id',$userid)->get();
+    
+         
+        }
         return view('home.mycart',compact('cart'));
+
     }
+
     public function delete_cart($id)
     {
 
@@ -66,6 +73,47 @@ class HomeController extends Controller
         $cart->delete();
 
         return redirect()->back();
+    }
+
+    public function confirm_order(Request $request)
+    {
+            // Validate the incoming request data
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'address' => 'required|string|max:255',
+                'phone' => 'required|string|max:255',
+            ]);
+        $name=$request->name;
+        $address=$request->address;
+        $phone=$request->phone;
+
+        $userid=Auth::user()->id;
+        $carts=Cart::where('user_id',$userid)->get();
+        
+      
+        
+        foreach($carts as $cart){
+            $order=new Order;
+            $order->name=$name;
+            $order->receive_address=$address;
+            $order->phone=$phone;
+            $order->user_id=$userid;
+            $order->product_id=$cart->product_id;
+            $order->save();
+        }
+
+
+        $cart_remove=Cart::where('user_id',$userid)->get();
+        foreach($cart_remove as $remove){
+            $data=Cart::find( $remove->id);
+            $data->delete();
+        }
+
+
+
+            return redirect()->back();
+
+    
     }
    
 }

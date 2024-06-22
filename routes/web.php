@@ -12,6 +12,8 @@ route::get('/dashboard',[HomeController::class,'login_home'])->middleware(['auth
 route::get('/add_cart/{id}',[HomeController::class,'add_cart'])->middleware(['auth', 'verified']);
 route::get('mycart',[HomeController::class,'mycart'])->middleware(['auth', 'verified']);
 route::get('delete_cart/{id}',[HomeController::class,'delete_cart'])->middleware(['auth', 'verified']);
+route::post('/confirm_order',[HomeController::class,'confirm_order'])->middleware(['auth', 'verified'])->name('confirm_order');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
