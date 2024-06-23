@@ -52,7 +52,7 @@
       </div>
 
  
-      <h1>Total Price : {{$value}} </h1>
+      <h1>Total Price : ${{$value}} </h1>
 
       <div class="container">
         <form  action="{{url('confirm_order')}}" method="POST">
@@ -78,8 +78,10 @@
                   <div class="invalid-feedback">{{ $message }}</div>
               @enderror
           </div>
-            <div>
-                <button type="submit" class="btn btn-primary">Place Order</button>
+            <div class='mt-2'>
+                <button type="submit" class="btn btn-primary">Cash on Delivery</button>
+
+                <a class="btn btn-success" href="{{url('stripe',$value)}}">Pay Using Card</a>
 
             </div>
             

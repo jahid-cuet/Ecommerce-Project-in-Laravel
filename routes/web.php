@@ -47,4 +47,10 @@ route::get('print_pdf/{id}',[AdminController::class,'print_pdf'])->middleware(['
 // For Search
 route::get('product_search',[AdminController::class,'product_search'])->middleware(['auth','admin']);
 // Admin End
+  
 
+// Stripe Payment System
+Route::controller(HomeController::class)->group(function(){
+    Route::get('stripe/{value}', 'stripe');
+    Route::post('stripe/{value}', 'stripePost')->name('stripe.post');
+});
