@@ -39,6 +39,9 @@
 
     @auth
 
+    <a class="mx-5" href="{{url('myorders')}}">
+      My Orders
+    </a>
     <a class="mx-5" href="{{url('mycart')}}">
       <i class="fa fa-shopping-bag" aria-hidden="true"></i>
     </a>
